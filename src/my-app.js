@@ -14,10 +14,8 @@ import './shared-styles';
 import '@polymer/app-route/app-location.js';
 import '@polymer/app-route/app-route.js';
 import '@polymer/iron-pages/iron-pages.js';
-// import '@polymer/iron-selector/iron-selector.js';
 import {Drawer} from '@material/mwc-drawer';
 import {TopAppBar} from "@material/mwc-top-app-bar";
-import {IconButton} from '@material/mwc-icon-button';
 
 // Gesture events like tap and track generated from touch will not be
 // preventable, allowing for better scrolling performance.
@@ -41,11 +39,11 @@ class MyApp extends PolymerElement {
             <p>Drawer content!</p>
             <mwc-icon-button icon="gesture"></mwc-icon-button>
             <mwc-icon-button icon="gavel"></mwc-icon-button>
+            
+            <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
+              <a name="my-inbox" href="[[rootPath]]my-inbox">Inbox</a>
+            </iron-selector>
         </div>
-        
-        <!--<iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
-          <a name="my-inbox" href="[[rootPath]]my-inbox">Inbox</a>
-        </iron-selector>-->
 
         <!-- Main content -->
         <div slot="appContent">
@@ -55,12 +53,11 @@ class MyApp extends PolymerElement {
           </mwc-top-app-bar>
 
           <div class="main-content">
-            foo
+            <iron-pages selected="[[page]]" attr-for-selected="name" role="main">
+              <my-inbox name="my-inbox"></my-inbox>
+              <my-view404 name="view404"></my-view404>
+            </iron-pages>
           </div>
-          <iron-pages selected="[[page]]" attr-for-selected="name" role="main">
-            <my-inbox name="my-inbox"></my-inbox>
-            <my-view404 name="view404"></my-view404>
-          </iron-pages>
         </div>
       </mwc-drawer>
     `;
