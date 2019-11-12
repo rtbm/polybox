@@ -16,8 +16,7 @@ class MyInboxListItem extends PolymerElement {
   }
 
   constructor() {
-    super(...arguments);
-    console.log(this.starred);
+    super();
   }
 
   static get properties() {
